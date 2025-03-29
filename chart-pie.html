@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Graphique Camembert</title>
+  <!-- Import Chart.js depuis un CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .chart-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Graphique en Camembert</h1>
+<p>
+  Ce graphique illustre la répartition de différentes catégories (produits, dépenses, etc.).
+  Pour modifier les statistiques, rendez-vous en fin de fichier (section &lt;script&gt;).
+</p>
+
+<div class="chart-container">
+  <canvas id="pieChart"></canvas>
+</div>
+
+<script>
+  // === Données et configuration modifiables ===
+  const pieChartLabels = ['Cosmétiques', 'Ménagers', 'Textiles', 'Autres'];
+  const pieChartData = [40, 30, 20, 10]; // Répartition fictive
+
+  // === Création du graphique ===
+  const ctxPie = document.getElementById('pieChart').getContext('2d');
+  new Chart(ctxPie, {
+    type: 'pie',
+    data: {
+      labels: pieChartLabels,
+      datasets: [{
+        label: 'Répartition Catégories',
+        data: pieChartData,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.6)',
+          'rgba(54, 162, 235, 0.6)',
+          'rgba(255, 206, 86, 0.6)',
+          'rgba(75, 192, 192, 0.6)'
+        ]
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Répartition par catégorie'
+        },
+        legend: {
+          position: 'bottom'
+        }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

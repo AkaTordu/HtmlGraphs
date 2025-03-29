@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Graphique Radar</title>
+  <!-- Chart.js depuis un CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .chart-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Graphique Radar</h1>
+<p>
+  Ce graphique compare plusieurs compétences SI (Sécurité, DevOps, etc.) au sein de différentes équipes.
+  Pour modifier les statistiques, rendez-vous en fin de fichier.
+</p>
+
+<div class="chart-container">
+  <canvas id="radarChart"></canvas>
+</div>
+
+<script>
+  // === Données modifiables ===
+  const radarLabels = ['Sécurité', 'DevOps', 'Data Analysis', 'Front-End', 'Back-End', 'Cloud'];
+  
+  // Deux datasets, par exemple deux équipes : Equipe A et Equipe B
+  const radarDatasets = [
+    {
+      label: 'Équipe A',
+      data: [4, 3, 5, 2, 3, 4], // Niveau de compétence (0-5)
+      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      borderColor: 'rgba(255, 99, 132, 1)',
+      pointBackgroundColor: 'rgba(255, 99, 132, 1)'
+    },
+    {
+      label: 'Équipe B',
+      data: [3, 4, 4, 4, 2, 5],
+      backgroundColor: 'rgba(54, 162, 235, 0.2)',
+      borderColor: 'rgba(54, 162, 235, 1)',
+      pointBackgroundColor: 'rgba(54, 162, 235, 1)'
+    }
+  ];
+
+  // === Création du graphique ===
+  const ctxRadar = document.getElementById('radarChart').getContext('2d');
+
+  new Chart(ctxRadar, {
+    type: 'radar',
+    data: {
+      labels: radarLabels,
+      datasets: radarDatasets
+    },
+    options: {
+      responsive: true,
+      scales: {
+        r: {
+          suggestedMin: 0,
+          suggestedMax: 5
+        }
+      },
+      plugins: {
+        title: {
+          display: true,
+          text: 'Comparaison des compétences SI'
+        },
+        legend: {
+          position: 'bottom'
+        }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

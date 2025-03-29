@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Graphique Doughnut</title>
+  <!-- Chart.js depuis un CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .chart-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Graphique Doughnut</h1>
+<p>
+  Ce diagramme en anneau illustre la répartition budgétaire par poste de dépense.
+  Pour ajuster les stats, modifie simplement le tableau de données dans la section &lt;script&gt;.
+</p>
+
+<div class="chart-container">
+  <canvas id="doughnutChart"></canvas>
+</div>
+
+<script>
+  // === Données modifiables ===
+  const doughnutLabels = ['Salaires', 'Infrastructures', 'Marketing', 'R&D', 'Autres'];
+  const doughnutData = [40, 20, 15, 15, 10]; // En pourcentage, par exemple
+
+  // === Création du graphique ===
+  const ctxDoughnut = document.getElementById('doughnutChart').getContext('2d');
+
+  new Chart(ctxDoughnut, {
+    type: 'doughnut',
+    data: {
+      labels: doughnutLabels,
+      datasets: [{
+        label: 'Répartition budget',
+        data: doughnutData,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.6)',
+          'rgba(54, 162, 235, 0.6)',
+          'rgba(255, 206, 86, 0.6)',
+          'rgba(75, 192, 192, 0.6)',
+          'rgba(153, 102, 255, 0.6)'
+        ]
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Répartition du budget par poste'
+        },
+        legend: {
+          position: 'bottom'
+        }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Graphique Barres</title>
+  <!-- Import Chart.js depuis un CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .chart-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Graphique en Barres</h1>
+<p>
+  Ce graphique illustre un exemple de ventes mensuelles.
+  Pour modifier les statistiques, rendez-vous en fin de fichier (section &lt;script&gt;).
+</p>
+
+<div class="chart-container">
+  <canvas id="barChart"></canvas>
+</div>
+
+<script>
+  // === Données et configuration modifiables ===
+  const barChartLabels = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin'];
+  const barChartData = [12, 18, 9, 15, 20, 25]; // Ventes fictives
+
+  // === Création du graphique ===
+  const ctxBar = document.getElementById('barChart').getContext('2d');
+  new Chart(ctxBar, {
+    type: 'bar',
+    data: {
+      labels: barChartLabels,
+      datasets: [{
+        label: 'Ventes 2025 (en k€)',
+        data: barChartData,
+        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      },
+      plugins: {
+        title: {
+          display: true,
+          text: 'Évolution des ventes mensuelles'
+        }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
